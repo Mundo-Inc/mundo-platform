@@ -8,10 +8,17 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      minHeight: {
+        svh: "100svh",
+        dvh: "100dvh",
+      },
+      height: {
+        svh: "100svh",
+        dvh: "100dvh",
+      },
+      maxHeight: {
+        svh: "100svh",
+        dvh: "100dvh",
       },
     },
   },

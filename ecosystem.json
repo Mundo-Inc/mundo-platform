@@ -1,0 +1,11 @@
+{
+  "apps": [
+    {
+      "name": "mundo-platform",
+      "script": "pnpm",
+      "args": "start",
+      "autorestart": true,
+      "watch": false
+    }
+  ]
+}
