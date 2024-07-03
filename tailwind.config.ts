@@ -8,6 +8,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        accent: "#9263F5",
+      },
+      maxWidth: {
+        "8xl": "88rem",
+      },
       minHeight: {
         svh: "100svh",
         dvh: "100dvh",

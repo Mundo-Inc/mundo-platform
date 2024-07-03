@@ -4,6 +4,7 @@
 
 body {
   min-height: 100dvh;
+  background-color: #000000;
 }
 
 @layer base {
@@ -30,10 +31,47 @@ body {
       font-size: 8pt;
     }
   }
+
+  @font-face {
+    font-family: "Satoshi";
+    src:
+      url("/fonts/Satoshi-Variable.woff2") format("woff2"),
+      url("/fonts/Satoshi-Variable.woff") format("woff"),
+      url("/fonts/Satoshi-Variable.ttf") format("truetype");
+    font-weight: 300 900;
+    font-display: swap;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Satoshi";
+    src:
+      url("/fonts/Satoshi-VariableItalic.woff2") format("woff2"),
+      url("/fonts/Satoshi-VariableItalic.woff") format("woff"),
+      url("/fonts/Satoshi-VariableItalic.ttf") format("truetype");
+    font-weight: 300 900;
+    font-display: swap;
+    font-style: italic;
+  }
+
+  body {
+    font-family: "Satoshi", sans-serif;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+@layer components {
+  .wrapper {
+    @apply mx-auto w-[96%] max-w-xl;
+    @apply sm:w-full;
+    @apply md:max-w-2xl;
+    @apply lg:max-w-4xl;
+    @apply xl:max-w-6xl;
+    @apply 2xl:max-w-8xl;
   }
 }

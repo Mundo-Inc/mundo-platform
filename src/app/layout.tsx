@@ -1,14 +1,11 @@
 import "./globals.css";
 
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
 
 import AuthProvider from "@contexts/AuthContext";
 import ReactQueryProvider from "@contexts/ReactQueryProvider";
 import env from "@env";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const viewport: Viewport = {
   themeColor: "#1B0227",
@@ -47,7 +44,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-KZWFLS86"
