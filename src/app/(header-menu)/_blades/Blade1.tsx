@@ -73,7 +73,7 @@ export default function Blade1() {
             }}
           >
             <Image
-              src="/images/lp/Mobile-Screen-Feed.png"
+              src="/images/lp/Mobile-Screen-Map.png"
               alt="Mundo app maps view"
               width={274}
               height={624}
