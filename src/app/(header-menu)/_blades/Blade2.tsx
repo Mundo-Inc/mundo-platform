@@ -5,10 +5,10 @@ import AddUserIcon from "@icons/AddUserIcon";
 import DiscountIcon from "@icons/DiscountIcon";
 import GiftIcon from "@icons/GiftIcon";
 
-export default function SecondBlade() {
+export default function Blade2() {
   return (
     <section className="wrapper grid min-h-dvh grid-cols-12 items-center">
-      <ul className="col-span-4 flex flex-col items-start gap-y-10">
+      <ul className="order-2 col-span-12 flex flex-col items-start gap-y-10 lg:order-1 lg:col-span-5 2xl:col-span-4">
         <ListItem
           icon={<AddUserIcon className="size-6" />}
           title="Connect With Your Friends"
@@ -31,7 +31,7 @@ export default function SecondBlade() {
         />
       </ul>
       <div
-        className="relative col-span-8 flex h-full items-center justify-center gap-4"
+        className="relative order-1 col-span-12 -mb-20 -mt-32 flex h-full items-center justify-center gap-4 lg:order-2 lg:col-span-7 lg:mb-0 lg:mt-0 2xl:col-span-8"
         style={{
           transform: "rotate3d(1.2, 0.6, -1, 70deg)",
         }}
@@ -80,12 +80,12 @@ function ListItem({
 }) {
   return (
     <li className="flex items-start gap-x-4">
-      <div className="border-accent text-accent flex size-12 flex-shrink-0 items-center justify-center rounded-full border-2">
+      <div className="flex size-12 flex-shrink-0 items-center justify-center rounded-full border-2 border-accent text-accent">
         {icon}
       </div>
 
       <div className="flex flex-col">
-        <h2 className="text-xl font-bold opacity-70">{title}</h2>
+        <h2 className="text-lg font-bold opacity-70 xl:text-xl">{title}</h2>
         <p className="opacity-30">{description}</p>
       </div>
     </li>

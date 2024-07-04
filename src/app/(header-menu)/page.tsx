@@ -1,13 +1,15 @@
-import FirstBlade from "./_blades/FirstBlade";
-import SecondBlade from "./_blades/SecondBlade";
-import ThirdBlade from "./_blades/ThirdBlade";
+import Blade1 from "./_blades/Blade1";
+import Blade2 from "./_blades/Blade2";
+import Blade3 from "./_blades/Blade3";
+import Blade4 from "./_blades/Blade4";
 
 export default function Home() {
   return (
-    <main className="relative -mt-20 min-h-dvh overflow-x-hidden">
-      <FirstBlade />
-      <SecondBlade />
-      <ThirdBlade />
+    <main className="relative -mt-20 min-h-dvh overflow-hidden">
+      <Blade1 />
+      <Blade2 />
+      <Blade3 />
+      <Blade4 />
     </main>
   );
 }

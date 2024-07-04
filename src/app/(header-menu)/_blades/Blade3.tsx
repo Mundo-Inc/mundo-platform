@@ -2,36 +2,31 @@ import Image from "next/image";
 
 import env from "@env";
 
-export default function ThirdBlade() {
+export default function Blade3() {
   return (
     <div className="relative min-h-dvh">
-      <section className="wrapper flex min-h-dvh w-full items-center">
-        <div className="grid w-full grid-cols-12 items-start">
-          <div
-            className="col-span-7 flex flex-col items-start gap-y-10"
-            style={{
-              paddingLeft: "10%",
-            }}
-          >
-            <h2 className="text-5xl">
+      <section className="wrapper flex min-h-dvh items-center">
+        <div className="grid w-full grid-cols-12 items-start gap-y-10">
+          <div className="col-span-12 flex flex-col items-start gap-y-5 pl-0 lg:col-span-7 lg:pl-[10%]">
+            <h2 className="text-xl md:text-3xl lg:text-5xl">
               Find{" "}
               <b>
                 THE <em>BEST</em>
               </b>{" "}
-              Places to visit
+              <em>Places to visit</em>
             </h2>
-            <p className="text-2xl opacity-40">
+            <p className="text-base opacity-40 lg:text-xl xl:text-2xl">
               Our verified reviewers will help you to find the best dining place
               in your area.
             </p>
             <a
               href={env.NEXT_PUBLIC_APPSTORE_LINK}
-              className="rounded-2xl bg-white px-4 py-3 text-sm font-black text-black"
+              className="block self-center rounded-2xl bg-white px-4 py-3 text-sm font-black text-black lg:self-start"
             >
               Download App
             </a>
           </div>
-          <div className="relative col-span-5 flex items-center justify-center">
+          <div className="relative col-span-12 flex items-center justify-center lg:col-span-5">
             <div
               className="flex items-center justify-center rounded-2xl bg-gray-900"
               style={{

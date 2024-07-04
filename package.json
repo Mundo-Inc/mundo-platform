@@ -12,7 +12,7 @@
     "@t3-oss/env-nextjs": "^0.10.1",
     "@tanstack/react-query": "^5.49.2",
     "clsx": "^2.1.1",
-    "firebase": "^10.12.2",
+    "firebase": "^10.12.3",
     "framer-motion": "^11.2.12",
     "jiti": "^1.21.6",
     "next": "14.2.4",

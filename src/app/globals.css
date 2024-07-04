@@ -67,7 +67,7 @@ body {
 
 @layer components {
   .wrapper {
-    @apply mx-auto w-[96%] max-w-xl;
+    @apply mx-auto w-[90%] max-w-xl;
     @apply sm:w-full;
     @apply md:max-w-2xl;
     @apply lg:max-w-4xl;
