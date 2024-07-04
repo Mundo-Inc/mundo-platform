@@ -61,7 +61,7 @@ export default function Header() {
 
       <nav
         className={clsx(
-          "fixed bottom-0 top-0 w-full justify-end bg-black/30 backdrop-blur-xl backdrop-filter transition-all duration-500 backdrop:blur-lg lg:relative lg:left-0 lg:flex lg:bg-transparent lg:backdrop-filter-none",
+          "fixed bottom-0 top-0 w-full justify-end bg-black/95 transition-all duration-500 lg:relative lg:left-0 lg:flex lg:bg-transparent",
           isOpen ? "left-0" : "-left-full",
         )}
       >
