@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 import env from "@env";
-import MenuIcon from "@icons/MenuIcon";
+import MenuIcon from "@icons/menuIcon";
 import HeaderLogo from "./HeaderLogo";
 
 export default function Header() {
