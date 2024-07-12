@@ -21,19 +21,26 @@ export default function MenuItem({
   return (
     <li
       className={clsx(
-        "flex w-full",
-        pathname === href ? "text-white" : "hover:text-white/70",
+        "flex w-full rounded-md transition-colors",
+        pathname === href
+          ? "bg-white/10 text-white"
+          : "text-white/70 hover:bg-white/10 hover:text-white",
       )}
       {...props}
     >
       <Link
         href={href}
-        className="flex w-full items-center justify-start gap-x-2 rounded-md py-2 transition-colors"
+        className="flex w-full items-center justify-start gap-x-2 rounded-md px-4 py-3.5"
       >
         {icon}
         <p className="flex-grow">{title}</p>
 
-        <ChevronRightIcon className="size-4" />
+        <ChevronRightIcon
+          className={clsx(
+            "size-4",
+            pathname === href ? "text-white" : "text-transparent",
+          )}
+        />
       </Link>
     </li>
   );

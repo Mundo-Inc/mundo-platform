@@ -1,11 +1,10 @@
 import Image from "next/image";
 
-import env from "@env";
 import Link from "next/link";
 
 export default function Blade4() {
   return (
-    <section className="wrapper flex min-h-dvh flex-col items-start justify-center gap-y-4">
+    <section className="container flex min-h-dvh flex-col items-start justify-center gap-y-4">
       <h2 className="max-w-3xl text-xl md:text-3xl lg:text-5xl">
         Are you a Business? Partner with Us!
       </h2>

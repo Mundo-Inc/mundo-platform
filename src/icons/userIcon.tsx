@@ -10,7 +10,7 @@ export default function UserIcon(props: ComponentProps<"svg">) {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <g opacity="0.5">
+      <g>
         <path
           fillRule="evenodd"
           clipRule="evenodd"

@@ -3,11 +3,12 @@
 import { usePathname } from "next/navigation";
 import { useContext } from "react";
 
+import MenuItem from "@components/SideBar/menuItem";
 import Sidebar from "@components/SideBar/sidebar";
 import { AuthContext } from "@contexts/AuthContext";
 import DashboardIcon from "@icons/dashboardIcon";
+import ListIcon from "@icons/listIcon";
 import UserIcon from "@icons/userIcon";
-import MenuItem from "../../../components/SideBar/menuItem";
 
 export default function RootLayout({
   children,
@@ -32,6 +33,12 @@ export default function RootLayout({
             title="Users"
             href="/admin/users"
             icon={<UserIcon className="size-5" />}
+          />
+          <MenuItem
+            pathname={pathname}
+            title="Missions"
+            href="/admin/missions"
+            icon={<ListIcon className="size-5" />}
           />
         </Sidebar>
         {children}

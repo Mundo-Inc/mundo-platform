@@ -56,7 +56,7 @@ export default function Header() {
   }, [isOpen]);
 
   return (
-    <header className="wrapper sticky top-0 z-50 flex h-20 items-center justify-center lg:justify-between">
+    <header className="container sticky top-0 z-50 flex h-20 items-center justify-center lg:justify-between">
       <HeaderLogo />
 
       <nav
@@ -71,7 +71,7 @@ export default function Header() {
             isOpen ? "left-0" : "left-full",
           )}
         >
-          <div className="wrapper flex h-20 items-center justify-start">
+          <div className="container flex h-20 items-center justify-start">
             <button onClick={handleClick}>
               <MenuIcon active={isOpen} className="size-7" />
             </button>

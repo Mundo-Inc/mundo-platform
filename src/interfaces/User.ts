@@ -1,3 +1,8 @@
+export enum UserRoleEnum {
+  Admin = "admin",
+  User = "user",
+}
+
 export interface AuthUser {
   _id: string;
   name: string;
@@ -6,7 +11,7 @@ export interface AuthUser {
     address: string;
     verified: boolean;
   };
-  role: "user" | "admin";
+  role: UserRoleEnum;
   bio: string;
   profileImage: string;
   verified: boolean;
@@ -20,3 +25,19 @@ export interface AuthUser {
     xp: number;
   };
 }
+
+export type IAdminUser = {
+  _id: string;
+  name: string;
+  profileImage: string;
+  username: string;
+  bio: string;
+  verified?: boolean;
+  createdAt: Date;
+  isPrivate: boolean;
+  email: {
+    address: string;
+    verified: boolean;
+  };
+  role: UserRoleEnum;
+};

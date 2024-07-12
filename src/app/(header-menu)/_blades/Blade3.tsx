@@ -5,7 +5,7 @@ import env from "@env";
 export default function Blade3() {
   return (
     <div className="relative min-h-dvh">
-      <section className="wrapper flex min-h-dvh items-center">
+      <section className="container flex min-h-dvh items-center">
         <div className="grid w-full grid-cols-12 items-start gap-y-10">
           <div className="col-span-12 flex flex-col items-start gap-y-5 pl-0 lg:col-span-7 lg:pl-[10%]">
             <h2 className="text-xl md:text-3xl lg:text-5xl">

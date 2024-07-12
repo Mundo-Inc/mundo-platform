@@ -7,12 +7,9 @@ import { useContext } from "react";
 
 import Spinner from "@components/spinner";
 import { AuthContext } from "@contexts/AuthContext";
+import LoginForm from "@/components/loginForm";
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   const { user } = useContext(AuthContext);
 
   return (
@@ -35,7 +32,7 @@ export default function RootLayout({
         </motion.main>
       ) : user === null ? (
         <main className="flex min-h-dvh flex-col items-center justify-center gap-y-16 px-4">
-          Login form
+          <LoginForm />
         </main>
       ) : (
         children

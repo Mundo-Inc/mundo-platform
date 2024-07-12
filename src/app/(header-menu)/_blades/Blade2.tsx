@@ -7,7 +7,7 @@ import GiftIcon from "@icons/giftIcon";
 
 export default function Blade2() {
   return (
-    <section className="wrapper grid min-h-dvh grid-cols-12 items-center">
+    <section className="container grid min-h-dvh grid-cols-12 items-center">
       <ul className="order-2 col-span-12 flex flex-col items-start gap-y-10 lg:order-1 lg:col-span-5 2xl:col-span-4">
         <ListItem
           icon={<AddUserIcon className="size-6" />}
