@@ -57,6 +57,7 @@ export default function Page() {
     getCoreRowModel: getCoreRowModel(),
     manualPagination: true,
     onPaginationChange: setPagination,
+    columnResizeMode: "onChange",
   });
 
   return (
@@ -93,7 +94,14 @@ export default function Page() {
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <TableHead key={header.id}>
+                <TableHead
+                  key={header.id}
+                  colSpan={header.colSpan}
+                  rowSpan={header.rowSpan}
+                  style={{
+                    width: header.getSize(),
+                  }}
+                >
                   {header.isPlaceholder
                     ? null
                     : flexRender(

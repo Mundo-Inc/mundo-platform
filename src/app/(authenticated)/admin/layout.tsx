@@ -36,8 +36,8 @@ export default function RootLayout({
           />
           <MenuItem
             pathname={pathname}
-            title="Missions"
-            href="/admin/missions"
+            title="Prizes"
+            href="/admin/prizes"
             icon={<ListIcon className="size-5" />}
           />
         </Sidebar>

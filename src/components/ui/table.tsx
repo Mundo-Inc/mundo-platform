@@ -8,14 +8,14 @@ const Table = React.forwardRef<
     isLoading?: boolean;
     loadingComponent?: React.ReactNode;
   }
->(({ className, ...props }, ref) => (
+>(({ className, loadingComponent, isLoading, ...props }, ref) => (
   <div className="relative h-full w-full overflow-auto">
     <table
       ref={ref}
       className={cn("w-full caption-bottom text-sm", className)}
       {...props}
     />
-    {props.isLoading && props.loadingComponent && props.loadingComponent}
+    {isLoading && loadingComponent && loadingComponent}
   </div>
 ));
 Table.displayName = "Table";
@@ -26,7 +26,10 @@ const TableHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <thead
     ref={ref}
-    className={cn("bg-muted/30 [&_tr]:border-b", className)}
+    className={cn(
+      "h-12 bg-muted/30 [&_th]:border-l first:[&_th]:border-l-0 [&_tr]:border-b",
+      className,
+    )}
     {...props}
   />
 ));
@@ -81,7 +84,7 @@ const TableHead = React.forwardRef<
   <th
     ref={ref}
     className={cn(
-      "h-12 px-2 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
+      "w-full px-3 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
       className,
     )}
     {...props}
@@ -95,7 +98,10 @@ const TableCell = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <td
     ref={ref}
-    className={cn("p-2 align-middle [&:has([role=checkbox])]:pr-0", className)}
+    className={cn(
+      "px-3 py-2 align-middle [&:has([role=checkbox])]:pr-0",
+      className,
+    )}
     {...props}
   />
 ));
