@@ -1,9 +1,9 @@
-import * as React from "react";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
   DotsHorizontalIcon,
 } from "@radix-ui/react-icons";
+import * as React from "react";
 
 import { cn } from "@/lib/utils";
 import { ButtonProps, buttonVariants } from "@/components/ui/button";
@@ -169,13 +169,13 @@ PaginationEllipsis.displayName = "PaginationEllipsis";
 
 export {
   Pagination,
+  PaginationButton,
   PaginationContent,
   PaginationEllipsis,
   PaginationItem,
-  PaginationButton,
   PaginationLink,
   PaginationNextButton,
-  PaginationPreviousButton,
   PaginationNextLink,
+  PaginationPreviousButton,
   PaginationPreviousLink,
 };

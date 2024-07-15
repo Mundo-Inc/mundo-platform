@@ -1,14 +1,26 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useContext } from "react";
+import { useRouter } from "next/navigation";
+import { useContext, useEffect } from "react";
 
+import MainContent from "@/components/mainContent";
+import SignInForm from "@/components/signInForm";
 import Spinner from "@/components/spinner";
 import { AuthContext } from "@/contexts/AuthContext";
-import SignInView from "../sign-in/SignInView";
+import Header from "../(header-menu)/_components/Header";
+import Image from "next/image";
+import SignInView from "./SignInView";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Page() {
   const { user } = useContext(AuthContext);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (user) {
+      router.replace(user.role === "admin" ? "/admin" : "/dashboard");
+    }
+  }, [user, router]);
 
   return (
     <AnimatePresence>
@@ -31,7 +43,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       ) : user === null ? (
         <SignInView />
       ) : (
-        children
+        <MainContent className="flex min-h-dvh items-center justify-center">
+          Welcome {user?.name}
+        </MainContent>
       )}
     </AnimatePresence>
   );

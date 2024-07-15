@@ -1,9 +1,9 @@
 import Image from "next/image";
 
-import AddStarIcon from "@icons/addStarIcon";
-import AddUserIcon from "@icons/addUserIcon";
-import DiscountIcon from "@icons/discountIcon";
-import GiftIcon from "@icons/giftIcon";
+import AddStarIcon from "@/icons/addStarIcon";
+import AddUserIcon from "@/icons/addUserIcon";
+import DiscountIcon from "@/icons/discountIcon";
+import GiftIcon from "@/icons/giftIcon";
 
 export default function Blade2() {
   return (

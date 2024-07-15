@@ -3,8 +3,8 @@ import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import { Toaster } from "sonner";
 
-import AuthProvider from "@contexts/AuthContext";
-import ReactQueryProvider from "@contexts/ReactQueryProvider";
+import AuthProvider from "@/contexts/AuthContext";
+import ReactQueryProvider from "@/contexts/ReactQueryProvider";
 import env from "@env";
 
 export const viewport: Viewport = {

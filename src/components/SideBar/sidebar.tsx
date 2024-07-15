@@ -5,10 +5,10 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useCallback, useContext, useEffect, useState } from "react";
 
-import CloseIcon from "@icons/closeIcon";
-import MenuIcon from "@icons/menuIcon";
-import { Button } from "../ui/button";
 import { AuthContext } from "@/contexts/AuthContext";
+import CloseIcon from "@/icons/closeIcon";
+import MenuIcon from "@/icons/menuIcon";
+import { Button } from "../ui/button";
 
 export default function Sidebar(props: { children: React.ReactNode }) {
   const pathname = usePathname();

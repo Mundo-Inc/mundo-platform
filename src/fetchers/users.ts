@@ -1,7 +1,8 @@
-import env from "@/env";
+import { type PaginationState } from "@tanstack/react-table";
+
+import env from "@env";
 import { IAdminUser } from "@/interfaces/User";
 import { fetchWithToken } from "@/lib/fetcher";
-import { type PaginationState } from "@tanstack/react-table";
 
 export async function adminFetchUsers(pagination: PaginationState) {
   const url = new URL(`${env.NEXT_PUBLIC_API_URL}/admin/users`);

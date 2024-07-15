@@ -2,7 +2,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import type { ComponentPropsWithoutRef } from "react";
 
-import ChevronRightIcon from "@icons/chevronRightIcon";
+import ChevronRightIcon from "@/icons/chevronRightIcon";
 
 interface MenuItemProps extends ComponentPropsWithoutRef<"li"> {
   pathname: string;

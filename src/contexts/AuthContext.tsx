@@ -22,7 +22,7 @@ import {
 } from "react";
 
 import env from "@env";
-import type { AuthUser } from "@interfaces/User";
+import type { AuthUser } from "@/interfaces/User";
 import { auth } from "../firebase/config";
 import { queryClient } from "./ReactQueryProvider";
 
@@ -137,10 +137,10 @@ export default function AuthProvider({ children }: PropsWithChildren<{}>) {
   }, []);
 
   useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
+    auth.onAuthStateChanged(async (fUser) => {
+      if (fUser) {
         setIsAuthenticated(true);
-        refetch();
+        await refetch();
       } else {
         setIsAuthenticated(false);
         queryClient.invalidateQueries({
@@ -155,7 +155,7 @@ export default function AuthProvider({ children }: PropsWithChildren<{}>) {
     return () => {
       auth.onAuthStateChanged(() => {});
     };
-  }, [refetch, router]);
+  }, [refetch, router]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <AuthContext.Provider

@@ -8,11 +8,11 @@ import {
 } from "@tanstack/react-table";
 import { useMemo, useState } from "react";
 
-import DataTablePagination from "@components/dataTablePagination";
-import MainContent from "@components/mainContent";
-import Spinner from "@components/spinner";
-import { Alert, AlertDescription, AlertTitle } from "@components/ui/alert";
-import { Separator } from "@components/ui/separator";
+import DashboardMainContent from "@/components/dashboardMainContent";
+import DataTablePagination from "@/components/dataTablePagination";
+import Spinner from "@/components/spinner";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Separator } from "@/components/ui/separator";
 import {
   Table,
   TableBody,
@@ -20,8 +20,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@components/ui/table";
-import { adminFetchUsers } from "@fetchers/users";
+} from "@/components/ui/table";
+import { adminFetchUsers } from "@/fetchers/users";
 import { columns } from "./columns";
 
 export default function Page() {
@@ -60,7 +60,7 @@ export default function Page() {
   });
 
   return (
-    <MainContent className="gap-y-4">
+    <DashboardMainContent className="gap-y-4 p-4">
       {isError && (
         <Alert variant="destructive">
           <AlertTitle>Error</AlertTitle>
@@ -128,6 +128,6 @@ export default function Page() {
           )}
         </TableBody>
       </Table>
-    </MainContent>
+    </DashboardMainContent>
   );
 }

@@ -1,4 +1,4 @@
-import { type APIResponse } from "@interfaces/APIResponse";
+import { type APIResponse } from "@/interfaces/APIResponse";
 import { auth } from "../firebase/config";
 import { handleResponseError } from "./errors";
 

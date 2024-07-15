@@ -1,5 +1,5 @@
 import { type IAdminUser } from "@/interfaces/User";
-import { Avatar, AvatarFallback, AvatarImage } from "@components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { type ColumnDef, createColumnHelper } from "@tanstack/react-table";
 
 export const columns: ColumnDef<IAdminUser>[] = [

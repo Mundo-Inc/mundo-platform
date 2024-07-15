@@ -18,14 +18,9 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
     "paths": {
       "@env": ["./src/env"],
-      "@contexts/*": ["./src/contexts/*"],
-      "@components/*": ["./src/components/*"],
-      "@lib/*": ["./src/lib/*"],
-      "@interfaces/*": ["./src/interfaces/*"],
-      "@icons/*": ["./src/icons/*"],
-      "@fetchers/*": ["./src/fetchers/*"],
       "@/*": ["./src/*"]
     }
   },

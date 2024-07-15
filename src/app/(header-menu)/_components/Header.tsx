@@ -3,13 +3,15 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 
+import { AuthContext } from "@/contexts/AuthContext";
+import MenuIcon from "@/icons/menuIcon";
 import env from "@env";
-import MenuIcon from "@icons/menuIcon";
 import HeaderLogo from "./HeaderLogo";
 
 export default function Header() {
+  const { user } = useContext(AuthContext);
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -80,8 +82,14 @@ export default function Header() {
 
         <ul className="flex h-full flex-col items-center gap-10 pb-10 pt-20 text-2xl font-medium text-white lg:flex-row lg:pb-0 lg:pt-0 lg:text-base lg:font-normal">
           <HeaderItem href="#ForBusiness">For Business</HeaderItem>
+          {user ? (
+            <HeaderItem href={user.role === "admin" ? "/admin" : "/dashboard"}>
+              Dashboard
+            </HeaderItem>
+          ) : (
+            <HeaderItem href="/sign-in">Sign In</HeaderItem>
+          )}
           <HeaderItem href="/careers">Careers</HeaderItem>
-          <HeaderItem href="/blog">Blog</HeaderItem>
           <HeaderItem href="/contact">Contact Us</HeaderItem>
           <HeaderItem href="/about">About</HeaderItem>
 

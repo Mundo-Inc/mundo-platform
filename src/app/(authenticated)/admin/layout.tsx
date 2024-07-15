@@ -3,12 +3,12 @@
 import { usePathname } from "next/navigation";
 import { useContext } from "react";
 
-import MenuItem from "@components/SideBar/menuItem";
-import Sidebar from "@components/SideBar/sidebar";
-import { AuthContext } from "@contexts/AuthContext";
-import DashboardIcon from "@icons/dashboardIcon";
-import ListIcon from "@icons/listIcon";
-import UserIcon from "@icons/userIcon";
+import MenuItem from "@/components/SideBar/menuItem";
+import Sidebar from "@/components/SideBar/sidebar";
+import { AuthContext } from "@/contexts/AuthContext";
+import DashboardIcon from "@/icons/dashboardIcon";
+import ListIcon from "@/icons/listIcon";
+import UserIcon from "@/icons/userIcon";
 
 export default function RootLayout({
   children,
