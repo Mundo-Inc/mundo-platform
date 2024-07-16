@@ -1,8 +1,8 @@
 import { type PaginationState } from "@tanstack/react-table";
 
-import env from "@env";
-import { IAdminUser } from "@/interfaces/User";
+import type { IAdminUser } from "@/interfaces/User";
 import { fetchWithToken } from "@/lib/fetcher";
+import env from "@env";
 
 export async function adminFetchUsers(pagination: PaginationState) {
   const url = new URL(`${env.NEXT_PUBLIC_API_URL}/admin/users`);
@@ -14,10 +14,10 @@ export async function adminFetchUsers(pagination: PaginationState) {
   return data;
 }
 
-export async function adminFetchBots(page: number, limit: number) {
+export async function adminFetchBots(pagination: PaginationState) {
   const url = new URL(`${env.NEXT_PUBLIC_API_URL}/admin/users`);
-  url.searchParams.set("page", page.toString());
-  url.searchParams.set("limit", limit.toString());
+  url.searchParams.set("page", (pagination.pageIndex + 1).toString());
+  url.searchParams.set("limit", pagination.pageSize.toString());
   url.searchParams.set("signupMethod", "bot");
 
   const data = await fetchWithToken(url.href);

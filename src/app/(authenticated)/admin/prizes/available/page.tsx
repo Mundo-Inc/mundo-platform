@@ -1,32 +1,18 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import {
-  flexRender,
-  getCoreRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
-import { useContext, useMemo, useRef, useState } from "react";
+import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
+import Image from "next/image";
+import { useMemo, useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
 
 import DashboardMainContent from "@/components/dashboardMainContent";
-import DataTablePagination from "@/components/dataTablePagination";
-import Spinner from "@/components/spinner";
+import DataTable from "@/components/dataTable";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Separator } from "@/components/ui/separator";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { adminFetchUsers } from "@/fetchers/users";
-import { columns } from "./columns";
-import { AuthContext } from "@/contexts/AuthContext";
-import { auth } from "@/firebase/config";
-import { toast } from "sonner";
-import env from "@env";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -35,12 +21,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import { Input } from "@/components/ui/input";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
@@ -49,10 +29,14 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils";
+import { getPrizes } from "@/fetchers/missions";
 import { fetchWithToken } from "@/lib/fetcher";
 import { uploadImage } from "@/lib/upload";
+import { cn } from "@/lib/utils";
+import env from "@env";
+import { columns } from "./columns";
 
 const formSchema = z.object({
   title: z.string().min(1),
@@ -62,7 +46,6 @@ const formSchema = z.object({
 });
 
 export default function Page() {
-  const [error, setError] = useState<string>();
   const [thumbnail, setThumbnail] = useState<string>();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -87,39 +70,77 @@ export default function Page() {
   }
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
-    const thumbnail = data.image[0];
+    try {
+      const thumbnail = data.image[0];
 
-    if (!thumbnail) {
-      toast.error("Please add a thumbnail");
-      return;
+      if (!thumbnail) {
+        throw new Error("Please add a thumbnail");
+      }
+
+      const media = await uploadImage(thumbnail, "prize");
+
+      await fetchWithToken(`${env.NEXT_PUBLIC_API_URL}/rewards/prizes`, {
+        method: "POST",
+        body: JSON.stringify({
+          title: data.title,
+          thumbnail: media.data._id,
+          count: data.limit,
+          amount: data.amount,
+        }),
+      });
+
+      toast.success("Prize created successfully!");
+      form.reset();
+    } catch (error: any) {
+      toast.error(error.message);
     }
-
-    const media = await uploadImage(thumbnail, "prize");
-
-    // submit form
-
-    await fetchWithToken(`${env.NEXT_PUBLIC_API_URL}/rewards/prizes`, {
-      method: "POST",
-      body: JSON.stringify({
-        title: data.title,
-        thumbnail: media.data._id,
-        count: data.limit,
-        amount: data.amount,
-      }),
-    });
-
-    toast.success("Prize created successfully!");
-    form.reset();
   }
 
+  const errorKeys = Object.keys(form.formState.errors);
+
+  const [pagination, setPagination] = useState({
+    pageIndex: 0,
+    pageSize: 15,
+  });
+
+  const { isPending, data } = useQuery({
+    queryKey: [
+      "rewards",
+      "prizes",
+      {
+        page: pagination.pageIndex + 1,
+        limit: pagination.pageSize,
+      },
+    ],
+    queryFn: () => getPrizes(pagination),
+    placeholderData: keepPreviousData,
+  });
+
+  const defaultData = useMemo(() => [], []);
+
+  const table = useReactTable({
+    data: data?.data ?? defaultData,
+    columns,
+    rowCount: data?.pagination?.totalCount ?? 0,
+    state: {
+      pagination,
+    },
+    getCoreRowModel: getCoreRowModel(),
+    manualPagination: true,
+    onPaginationChange: setPagination,
+  });
+
   return (
-    <div className="flex h-full w-full flex-col gap-y-2 p-4">
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button className="ml-auto" variant="outline">
-            Create Prize
-          </Button>
-        </DialogTrigger>
+    <Dialog>
+      <DashboardMainContent className="gap-y-4 p-4">
+        <div className="flex h-9 w-full shrink-0 items-center justify-between">
+          <h1 className="text-xl font-bold">Avaliable Prizes List</h1>
+          <DialogTrigger asChild>
+            <Button variant="outline" size="sm">
+              Create Prize
+            </Button>
+          </DialogTrigger>
+        </div>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Create Prize</DialogTitle>
@@ -127,13 +148,6 @@ export default function Page() {
               Here you can add prizes that users can redeem! Add wisely!
             </DialogDescription>
           </DialogHeader>
-
-          {error && (
-            <Alert variant="destructive">
-              <AlertTitle>Error</AlertTitle>
-              <AlertDescription>{error}</AlertDescription>
-            </Alert>
-          )}
 
           <Form {...form}>
             <form
@@ -239,13 +253,12 @@ export default function Page() {
                 </div>
               </div>
 
-              {Object.keys(form.formState.errors).join(", ")}
-              {/* {form.formState.errors && (
+              {errorKeys.length > 0 && (
                 <Alert variant="destructive">
-                  <AlertTitle>Error</AlertTitle>
-                  <AlertDescription>Error</AlertDescription>
+                  <AlertTitle>Error in these fields</AlertTitle>
+                  <AlertDescription>{errorKeys.join(", ")}</AlertDescription>
                 </Alert>
-              )} */}
+              )}
 
               <Button
                 type="submit"
@@ -257,96 +270,9 @@ export default function Page() {
             </form>
           </Form>
         </DialogContent>
-      </Dialog>
 
-      {/* <Dialog open={dialogOpen} onClose={handleCloseDialog} fullScreen>
-        <DialogTitle>Create Prize</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Here you can add prizes that users can redeem! Add wisely!
-          </DialogContentText>
-          <div className="flex w-full flex-row">
-            <div className="flex basis-full flex-col gap-5 p-4">
-              <TextField
-                autoFocus
-                margin="dense"
-                id="title"
-                label="Title"
-                type="text"
-                fullWidth
-                variant="standard"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  setTitle(e.target.value);
-                }}
-              />
-              <TextField
-                autoFocus
-                margin="dense"
-                id="redemption-amount"
-                label="Amount To Redeem (Phantom Coins)"
-                type="number"
-                fullWidth
-                variant="standard"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  setAmount(parseInt(e.target.value));
-                }}
-              />
-              <TextField
-                autoFocus
-                margin="dense"
-                id="redemption-amount"
-                label="Limit"
-                type="number"
-                fullWidth
-                variant="standard"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  setCount(parseInt(e.target.value));
-                }}
-              />
-              <input
-                type="file"
-                ref={inputRef}
-                style={{ display: "none" }}
-                accept="image/*"
-                onChange={handleFileChange}
-              />
-              <Button
-                onClick={() => {
-                  handleThumbnailUploadClick();
-                }}
-              >
-                UPLOAD THUMBNAIL (140 X 170)
-              </Button>
-              {thumbnail && (
-                <Image
-                  src={thumbnail}
-                  alt="thumbnail"
-                  width={140}
-                  height={170}
-                  style={{ objectFit: "contain" }}
-                ></Image>
-              )}
-            </div>
-          </div>
-
-          <p className="mt-4 font-mono text-lg text-red-400">{error}</p>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseDialog}>Cancel</Button>
-          <LoadingButton
-            onClick={handlePrizeCreate}
-            disabled={!thumbnail || !title || !amount || !count}
-            loading={isLoading}
-          >
-            Create
-          </LoadingButton>
-        </DialogActions>
-      </Dialog> */}
-
-      <h2 className="mr-auto font-bold">Avaliable Prizes List</h2>
-      {/* <PrizesList refresh={refresh} /> */}
-      <h2 className="mr-auto font-bold">Redemption Inquiries</h2>
-      {/* <RedemptionList refresh={refresh} /> */}
-    </div>
+        <DataTable table={table} isPending={isPending} columns={columns} />
+      </DashboardMainContent>
+    </Dialog>
   );
 }

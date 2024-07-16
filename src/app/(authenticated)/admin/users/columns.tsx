@@ -4,19 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { type IAdminUser } from "@/interfaces/User";
 import { CopyIcon } from "@radix-ui/react-icons";
-
-function copyToClipboard(cell: Cell<IAdminUser, unknown>) {
-  const value = cell.getValue() as string;
-  navigator.clipboard.writeText(value);
-  const element = document.getElementById(value);
-
-  if (element) {
-    element.classList.add("text-green-600");
-    setTimeout(() => {
-      element.classList.remove("text-green-600");
-    }, 500);
-  }
-}
+import { copyCellValueToClipboard } from "@/lib/tables";
 
 export const columns: ColumnDef<IAdminUser>[] = [
   {
@@ -79,7 +67,7 @@ export const columns: ColumnDef<IAdminUser>[] = [
           size="icon"
           variant="outline"
           className="p-0"
-          onClick={copyToClipboard.bind(null, cell)}
+          onClick={copyCellValueToClipboard.bind(null, cell)}
         >
           <CopyIcon className="size-4" />
         </Button>

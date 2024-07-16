@@ -23,14 +23,13 @@ import {
 } from "@/components/ui/table";
 import { adminFetchUsers } from "@/fetchers/users";
 import { columns } from "./columns";
+import DataTable from "@/components/dataTable";
 
 export default function Page() {
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: 15,
   });
-
-  const [selected, setSelected] = useState(false);
 
   const { isPending, isError, error, data } = useQuery({
     queryKey: [
@@ -57,7 +56,6 @@ export default function Page() {
     getCoreRowModel: getCoreRowModel(),
     manualPagination: true,
     onPaginationChange: setPagination,
-    columnResizeMode: "onChange",
   });
 
   return (
@@ -82,60 +80,7 @@ export default function Page() {
 
       <Separator orientation="horizontal" />
 
-      <Table
-        isLoading={isPending}
-        loadingComponent={
-          <div className="absolute inset-0 flex size-full items-center justify-center">
-            <Spinner />
-          </div>
-        }
-      >
-        <TableHeader>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <TableHead
-                  key={header.id}
-                  colSpan={header.colSpan}
-                  rowSpan={header.rowSpan}
-                  style={{
-                    width: header.getSize(),
-                  }}
-                >
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext(),
-                      )}
-                </TableHead>
-              ))}
-            </TableRow>
-          ))}
-        </TableHeader>
-        <TableBody>
-          {table.getRowModel().rows?.length ? (
-            table.getRowModel().rows.map((row) => (
-              <TableRow
-                key={row.id}
-                data-state={row.getIsSelected() && "selected"}
-              >
-                {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableCell>
-                ))}
-              </TableRow>
-            ))
-          ) : (
-            <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center">
-                No results.
-              </TableCell>
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
+      <DataTable table={table} isPending={isPending} columns={columns} />
     </DashboardMainContent>
   );
 }

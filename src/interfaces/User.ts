@@ -41,3 +41,24 @@ export type IAdminUser = {
   };
   role: UserRoleEnum;
 };
+
+export type IUserPrivate = {
+  _id: string;
+  name: string;
+  email: {
+    address: string;
+    verified: boolean;
+  };
+  profileImage: string;
+  username: string;
+  bio: string;
+  role: UserRoleEnum;
+  verified: boolean;
+  createdAt: Date;
+  isPrivate: boolean;
+  progress: {
+    level: number;
+    xp: number;
+  };
+  accepted_eula: boolean;
+};
