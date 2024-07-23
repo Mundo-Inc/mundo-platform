@@ -5,7 +5,8 @@
       "script": "pnpm",
       "args": "start",
       "autorestart": true,
-      "watch": false
+      "watch": false,
+      "interpreter": "/home/ubuntu/.local/share/pnpm/pnpm"
     }
   ]
 }
