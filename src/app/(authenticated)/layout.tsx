@@ -5,7 +5,8 @@ import { useContext } from "react";
 
 import Spinner from "@/components/spinner";
 import { AuthContext } from "@/contexts/AuthContext";
-import SignInView from "../sign-in/SignInView";
+import SignInView from "../(header-menu)/sign-in/SignInView";
+import Header from "../(header-menu)/_components/Header";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { user } = useContext(AuthContext);
@@ -29,7 +30,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <Spinner />
         </motion.main>
       ) : user === null ? (
-        <SignInView />
+        <div className="flex flex-col">
+          <Header />
+          <SignInView />
+        </div>
       ) : (
         children
       )}

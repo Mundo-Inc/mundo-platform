@@ -1,11 +1,28 @@
 import "./globals.css";
 
 import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
 import { Toaster } from "sonner";
 
 import AuthProvider from "@/contexts/AuthContext";
 import ReactQueryProvider from "@/contexts/ReactQueryProvider";
 import env from "@env";
+
+const font = localFont({
+  src: [
+    {
+      path: "./fonts/Satoshi-Variable.woff2",
+      weight: "300 900",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Satoshi-VariableItalic.woff2",
+      weight: "300 900",
+      style: "italic",
+    },
+  ],
+  display: "swap",
+});
 
 export const viewport: Viewport = {
   themeColor: "#1B0227",
@@ -44,7 +61,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className={font.className}>
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-KZWFLS86"

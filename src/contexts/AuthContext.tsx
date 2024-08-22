@@ -25,6 +25,7 @@ import env from "@env";
 import type { AuthUser } from "@/interfaces/User";
 import { auth } from "../firebase/config";
 import { queryClient } from "./ReactQueryProvider";
+import { getCurrentUser } from "@/fetchers/users";
 
 type SignInProps =
   | {
@@ -39,34 +40,13 @@ interface AuthContextData {
   user?: AuthUser | null;
   isLoading: boolean;
   updateUser: (
-    options?: RefetchOptions | undefined,
+    options?: RefetchOptions,
   ) => Promise<QueryObserverResult<AuthUser | null, Error>>;
   signIn: UseMutateAsyncFunction<void, Error, SignInProps, unknown>;
   signOut: () => void;
 }
 
 export const AuthContext = createContext({} as AuthContextData);
-
-async function getUser() {
-  if (!auth.currentUser) {
-    return null;
-  }
-
-  const token = await auth.currentUser.getIdToken();
-  const response = await fetch(`${env.NEXT_PUBLIC_API_URL}/users/me`, {
-    method: "GET",
-    headers: {
-      Authorization: token,
-      "Content-Type": "application/json",
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error("Error getting user info");
-  }
-
-  return response.json().then((data) => data.data as AuthUser);
-}
 
 export default function AuthProvider({ children }: PropsWithChildren<{}>) {
   const router = useRouter();
@@ -78,9 +58,9 @@ export default function AuthProvider({ children }: PropsWithChildren<{}>) {
     data: user,
     refetch,
     isLoading,
-  } = useQuery<AuthUser | null>({
+  } = useQuery({
     queryKey: ["user", "me"],
-    queryFn: getUser,
+    queryFn: getCurrentUser,
     enabled: isAuthenticated !== undefined,
   });
 

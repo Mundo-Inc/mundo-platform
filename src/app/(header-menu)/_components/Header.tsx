@@ -1,12 +1,12 @@
 "use client";
 
-import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useContext, useEffect, useState } from "react";
 
 import { AuthContext } from "@/contexts/AuthContext";
 import MenuIcon from "@/icons/menuIcon";
+import { cn } from "@/lib/utils";
 import env from "@env";
 import HeaderLogo from "./HeaderLogo";
 
@@ -25,7 +25,7 @@ export default function Header() {
     } else if (window.innerWidth >= 1024 && !isOpen) {
       setIsOpen(true);
     }
-  }, [pathname]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [pathname]); // eslint-disable-line react-hooks/exhaustive-deps, react-hooks/exhaustive-deps
 
   const onResize = useCallback(() => {
     // 1024px (lg) is the breakpoint for the sidebar
@@ -62,13 +62,13 @@ export default function Header() {
       <HeaderLogo />
 
       <nav
-        className={clsx(
+        className={cn(
           "fixed bottom-0 top-0 w-full justify-end bg-black/95 transition-all duration-500 lg:relative lg:left-0 lg:flex lg:bg-transparent",
           isOpen ? "left-0" : "-left-full",
         )}
       >
         <div
-          className={clsx(
+          className={cn(
             "absolute top-0 w-full transition-none lg:hidden",
             isOpen ? "left-0" : "left-full",
           )}
@@ -81,7 +81,6 @@ export default function Header() {
         </div>
 
         <ul className="flex h-full flex-col items-center gap-10 pb-10 pt-20 text-2xl font-medium text-white lg:flex-row lg:pb-0 lg:pt-0 lg:text-base lg:font-normal">
-          <HeaderItem href="#ForBusiness">For Business</HeaderItem>
           {user ? (
             <HeaderItem href={user.role === "admin" ? "/admin" : "/dashboard"}>
               Dashboard
@@ -89,9 +88,8 @@ export default function Header() {
           ) : (
             <HeaderItem href="/sign-in">Sign In</HeaderItem>
           )}
-          <HeaderItem href="/careers">Careers</HeaderItem>
+          <HeaderItem href="/#ForBusiness">For Business</HeaderItem>
           <HeaderItem href="/contact">Contact Us</HeaderItem>
-          <HeaderItem href="/about">About</HeaderItem>
 
           <li className="mt-auto">
             <a

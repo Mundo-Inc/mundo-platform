@@ -11,6 +11,7 @@ export default function Blade1() {
         <div className="col-span-12 flex flex-col items-center gap-y-10 lg:col-span-6 lg:items-start">
           <Image
             src="/images/lp/LandingPageLogo.jpg"
+            priority
             alt="Mundo Logo"
             width={237}
             height={237}
@@ -24,7 +25,7 @@ export default function Blade1() {
           </p>
           <h1 className="self-start text-xl md:text-3xl lg:text-5xl">
             See Who&apos;s Eating{" "}
-            <span className="font-semibold italic">Without</span> You!
+            <span className="font-medium italic">Without</span> You!
           </h1>
           <p className="opacity-70">
             Download the latest version of Mundo application to get access to
@@ -47,7 +48,7 @@ export default function Blade1() {
         </div>
         <div className="relative col-span-6 hidden h-full items-center justify-center lg:flex">
           <div
-            className="bg z-10 p-2.5"
+            className="bg z-10 flex-shrink-0 p-2.5"
             style={{
               backgroundColor: "#131313",
               borderRadius: 35,
@@ -60,11 +61,15 @@ export default function Blade1() {
               width={274}
               height={624}
               draggable={false}
+              style={{
+                width: 274,
+                height: 624,
+              }}
             />
           </div>
 
           <div
-            className="bg z-0 -ml-16 mt-10 rotate-12 p-2"
+            className="bg z-0 -ml-16 mt-10 flex-shrink-0 rotate-12 p-2"
             style={{
               backgroundColor: "#131313",
               borderRadius: 35,
@@ -78,6 +83,10 @@ export default function Blade1() {
               width={274}
               height={624}
               draggable={false}
+              style={{
+                width: 274,
+                height: 624,
+              }}
             />
           </div>
 

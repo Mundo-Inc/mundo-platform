@@ -5,11 +5,8 @@ import { useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
 
 import MainContent from "@/components/mainContent";
-import SignInForm from "@/components/signInForm";
 import Spinner from "@/components/spinner";
 import { AuthContext } from "@/contexts/AuthContext";
-import Header from "../(header-menu)/_components/Header";
-import Image from "next/image";
 import SignInView from "./SignInView";
 
 export default function Page() {
@@ -43,7 +40,10 @@ export default function Page() {
       ) : user === null ? (
         <SignInView />
       ) : (
-        <MainContent className="flex min-h-dvh items-center justify-center">
+        <MainContent
+          className="flex min-h-dvh items-center justify-center"
+          withHeader
+        >
           Welcome {user?.name}
         </MainContent>
       )}

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function HeaderLogo() {
   return (
-    <Link href="/">
+    <Link href="/" className="z-10">
       <motion.h1
         initial={{
           opacity: 0,
