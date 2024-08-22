@@ -12,7 +12,7 @@ export const adminFetchUsers = cache(async (pagination: PaginationState) => {
 
   const data = await fetchWithToken<IAdminUser[]>(url.href);
 
-  return data.data;
+  return data;
 });
 
 export const adminFetchBots = cache(async (pagination: PaginationState) => {
@@ -22,7 +22,7 @@ export const adminFetchBots = cache(async (pagination: PaginationState) => {
 
   const data = await fetchWithToken<IAdminUser[]>(url.href);
 
-  return data.data;
+  return data;
 });
 
 export const adminFetchBot = cache(async (id: string) => {
@@ -30,7 +30,7 @@ export const adminFetchBot = cache(async (id: string) => {
 
   const data = await fetchWithToken<IAdminUser[]>(url.href);
 
-  return data.data;
+  return data;
 });
 
 export const getCurrentUser = cache(async () => {

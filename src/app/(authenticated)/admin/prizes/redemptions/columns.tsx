@@ -1,7 +1,6 @@
 import { CopyIcon } from "@radix-ui/react-icons";
 import type { ColumnDef } from "@tanstack/react-table";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import type { IPrizeRedemption } from "@/interfaces/redemption";
 import { copyCellValueToClipboard } from "@/lib/tables";

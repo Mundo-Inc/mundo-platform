@@ -1,9 +1,9 @@
-import type { Cell, ColumnDef } from "@tanstack/react-table";
+import { CopyIcon } from "@radix-ui/react-icons";
+import type { ColumnDef } from "@tanstack/react-table";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { type IAdminUser } from "@/interfaces/User";
-import { CopyIcon } from "@radix-ui/react-icons";
 import { copyCellValueToClipboard } from "@/lib/tables";
 
 export const columns: ColumnDef<IAdminUser>[] = [
