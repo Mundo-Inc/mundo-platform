@@ -27,15 +27,24 @@ export default function Blade3() {
             </a>
           </div>
           <div className="relative col-span-12 flex items-center justify-center lg:col-span-5">
-            <div
-              className="flex items-center justify-center rounded-2xl bg-gray-900"
+            <video
+              autoPlay
+              muted
+              loop
+              className="box-content rounded-2xl border-4"
               style={{
-                width: 350,
-                height: 600,
+                width: 295.33,
+                height: 640,
               }}
+              title="Demo video"
+              aria-label="Demo video showing app features"
             >
-              Video
-            </div>
+              <source
+                src="https://mundo-app.s3.us-west-1.amazonaws.com/assets/SR.mp4"
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
       </section>
