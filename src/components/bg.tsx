@@ -46,6 +46,8 @@ export default function Bg() {
           backgroundRepeat: "no-repeat",
         }}
       />
+
+      <div className="absolute inset-0 h-full w-full bg-accent/50" />
     </div>
   );
 }

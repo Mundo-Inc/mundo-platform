@@ -4,8 +4,8 @@ import env from "@env";
 
 export default function Blade3() {
   return (
-    <div className="relative min-h-dvh">
-      <section className="container flex min-h-dvh items-center">
+    <div className="relative min-h-svh">
+      <section className="container flex min-h-svh items-center">
         <div className="grid w-full grid-cols-12 items-start gap-y-10">
           <div className="col-span-12 flex flex-col items-start gap-y-5 pl-0 lg:col-span-7 lg:pl-[10%]">
             <h2 className="text-xl md:text-3xl lg:text-5xl">
@@ -31,6 +31,7 @@ export default function Blade3() {
               autoPlay
               muted
               loop
+              playsInline
               className="box-content rounded-2xl border-4"
               style={{
                 width: 295.33,
@@ -61,19 +62,39 @@ export default function Blade3() {
           opacity: 0.35,
         }}
       />
-      <Image
-        src="/images/lp/LeadingObj.png"
-        alt=""
-        width={435}
-        height={1521}
-        className="pointer-events-none absolute -top-1/2 left-0 -z-10"
+
+      <div
+        className="-z-10"
+        aria-hidden="true"
+        style={{
+          width: 435,
+          height: 1521,
+          pointerEvents: "none",
+          position: "absolute",
+          top: "-50%",
+          left: "0",
+          backgroundImage: `url(/images/lp/LeadingObj.png)`,
+          backgroundSize: "contain",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
       />
-      <Image
-        src="/images/lp/Obj2.png"
-        alt=""
-        width={401}
-        height={329}
-        className="pointer-events-none absolute bottom-0 left-1/4 -z-10 -translate-x-1/2"
+
+      <div
+        className="-z-10"
+        style={{
+          width: 401,
+          height: 329,
+          pointerEvents: "none",
+          position: "absolute",
+          bottom: "0",
+          left: "25%",
+          translate: "-50%",
+          backgroundImage: `url(/images/lp/Obj2.png)`,
+          backgroundSize: "contain",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
       />
     </div>
   );

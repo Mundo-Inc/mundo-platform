@@ -67,31 +67,57 @@ export default function Header() {
           isOpen ? "left-0" : "-left-full",
         )}
       >
-        <div
-          className={cn(
-            "absolute top-0 w-full transition-none lg:hidden",
-            isOpen ? "left-0" : "left-full",
-          )}
-        >
+        <div className="fixed left-0 top-0 w-full transition-none lg:hidden">
           <div className="container flex h-20 items-center justify-start">
-            <button onClick={handleClick}>
-              <MenuIcon active={isOpen} className="size-7" />
+            <button
+              onClick={handleClick}
+              aria-label="Menu Toggle"
+              aria-controls="menu"
+              aria-expanded={isOpen}
+              aria-haspopup="menu"
+              type="button"
+            >
+              <MenuIcon
+                active={isOpen}
+                className={cn(
+                  "size-7",
+                  isOpen ? "text-transparent" : "text-white",
+                )}
+                style={{
+                  transform: isOpen
+                    ? "rotate(135deg) scale(1)"
+                    : "rotate(0deg) scale(1)",
+                  transition: "all 0.4s ease-out",
+                }}
+              />
             </button>
           </div>
         </div>
 
-        <ul className="flex h-full flex-col items-center gap-10 pb-10 pt-20 text-2xl font-medium text-white lg:flex-row lg:pb-0 lg:pt-0 lg:text-base lg:font-normal">
+        <ul
+          className="flex h-full flex-col items-center justify-center gap-10 pb-10 pt-20 text-2xl font-medium text-white lg:flex-row lg:pb-0 lg:pt-0 lg:text-base lg:font-normal"
+          id="menu"
+        >
+          <HeaderItem pathname={pathname} href="/#ForBusiness">
+            For Business
+          </HeaderItem>
+          <HeaderItem pathname={pathname} href="/contact">
+            Contact Us
+          </HeaderItem>
           {user ? (
-            <HeaderItem href={user.role === "admin" ? "/admin" : "/dashboard"}>
+            <HeaderItem
+              pathname={pathname}
+              href={user.role === "admin" ? "/admin" : "/dashboard"}
+            >
               Dashboard
             </HeaderItem>
           ) : (
-            <HeaderItem href="/sign-in">Sign In</HeaderItem>
+            <HeaderItem pathname={pathname} href="/sign-in">
+              Sign In
+            </HeaderItem>
           )}
-          <HeaderItem href="/#ForBusiness">For Business</HeaderItem>
-          <HeaderItem href="/contact">Contact Us</HeaderItem>
 
-          <li className="mt-auto">
+          <li className="">
             <a
               href={env.NEXT_PUBLIC_APPSTORE_LINK}
               className="block rounded-2xl bg-white px-4 py-3 text-sm font-black text-black"
@@ -108,15 +134,22 @@ export default function Header() {
 function HeaderItem({
   href,
   children,
+  pathname,
 }: {
   href: string;
   children: React.ReactNode;
+  pathname: string;
 }) {
   return (
     <li>
       <Link
         href={href}
-        className="opacity-40 transition-opacity hover:opacity-100"
+        className={cn(
+          "transition-opacity",
+          pathname === href
+            ? "text-accent-foreground opacity-100"
+            : "opacity-40 hover:opacity-100",
+        )}
       >
         {children}
       </Link>

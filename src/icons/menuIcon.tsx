@@ -15,35 +15,57 @@ export default function MenuIcon({
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M2.30054 10.9504H10.3005V2.95044H2.30054V10.9504Z"
+      {active && (
+        <>
+          <rect width="16" height="3" x="4" y="10.5" fill="coral" rx={2} />
+          <rect width="3" height="16" x="10.5" y="4" fill="coral" rx={2} />
+        </>
+      )}
+      <rect width={8} height={8} x={2.5} y={2.5} fill="currentColor" rx={1.5} />
+      <rect
+        width={8}
+        height={8}
+        x={2.5}
+        y={13.5}
         fill="currentColor"
+        rx={1.5}
       />
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M2.30054 21.9495H10.3005V13.9495H2.30054V21.9495Z"
+      <rect
+        width={8}
+        height={8}
+        x={13.5}
+        y={2.5}
         fill="currentColor"
+        rx={1.5}
       />
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M13.3005 21.9495H21.3005V13.9495H13.3005V21.9495Z"
+      <rect
+        width={8}
+        height={8}
+        x={13.5}
+        y={13.5}
         fill="currentColor"
+        rx={1.5}
       />
-      <path
-        opacity={active ? "0.4" : "0.8"}
+
+      {/* <rect
+        width={8}
+        height={8}
+        x={13.5}
+        y={13.5}
+        fill="currentColor"
+        opacity={active ? "1" : "0.8"}
+      /> */}
+      {/* <path
+        opacity={active ? "1" : "0.8"}
         fillRule="evenodd"
         clipRule="evenodd"
         d={
-          active
+          false
             ? "M22.1996 4.12154L14.4716 2.05054L12.4016 9.77854L20.1286 11.8485L22.1996 4.12154Z"
             : "M22.1996 10.9504H21.3005V2.9495H13.30054V10.9504Z"
         }
         fill="currentColor"
-      />
+      /> */}
     </svg>
   );
 }

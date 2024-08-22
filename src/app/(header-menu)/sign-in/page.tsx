@@ -41,7 +41,7 @@ export default function Page() {
         <SignInView />
       ) : (
         <MainContent
-          className="flex min-h-dvh items-center justify-center"
+          className="flex min-h-svh items-center justify-center"
           withHeader
         >
           Welcome {user?.name}

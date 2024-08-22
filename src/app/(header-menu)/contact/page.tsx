@@ -6,9 +6,9 @@ export default function Page() {
   return (
     <MainContent
       withHeader
-      className="flex min-h-dvh items-center justify-center"
+      className="flex min-h-svh items-center justify-center"
     >
-      <section className="container grid grid-cols-1 gap-10 md:grid-cols-2">
+      <section className="container grid grid-cols-1 gap-10 pb-20 md:grid-cols-2">
         <div className="max-w-lg">
           <h1 className="text-2xl font-bold">Get in Touch with Us!</h1>
           <p className="mt-2 opacity-70">

@@ -21,7 +21,7 @@ export default function RootLayout({
 
   return (
     user?.role === "admin" && (
-      <div className="grid min-h-dvh grid-cols-12">
+      <div className="grid min-h-svh grid-cols-12">
         <Sidebar>
           <MenuItem
             pathname={pathname}

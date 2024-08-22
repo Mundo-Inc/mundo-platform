@@ -7,7 +7,7 @@ import LandingPageVector2 from "../../../vectors/LandingPageVector2";
 export default function Blade1() {
   return (
     <>
-      <section className="container grid min-h-dvh grid-cols-12 items-center pt-20">
+      <section className="container grid min-h-svh grid-cols-12 items-center pt-20">
         <div className="col-span-12 flex flex-col items-center gap-y-10 lg:col-span-6 lg:items-start">
           <Image
             src="/images/lp/LandingPageLogo.jpg"

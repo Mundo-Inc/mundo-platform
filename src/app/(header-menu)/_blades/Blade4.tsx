@@ -5,7 +5,7 @@ export default function Blade4() {
   return (
     <section
       id="ForBusiness"
-      className="container flex min-h-dvh flex-col items-start justify-center gap-y-4"
+      className="container flex min-h-svh flex-col items-start justify-center gap-y-4"
     >
       <h2 className="max-w-3xl text-xl md:text-3xl lg:text-5xl">
         Are you a Business? Partner with Us!
