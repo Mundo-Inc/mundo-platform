@@ -84,9 +84,7 @@ export default function Header() {
                   isOpen ? "text-transparent" : "text-white",
                 )}
                 style={{
-                  transform: isOpen
-                    ? "rotate(135deg) scale(1)"
-                    : "rotate(0deg) scale(1)",
+                  rotate: isOpen ? "135deg" : "0deg",
                   transition: "all 0.4s ease-out",
                 }}
               />
