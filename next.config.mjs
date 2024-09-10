@@ -1,5 +1,7 @@
 import { fileURLToPath } from "node:url";
 import createJiti from "jiti";
+import { withContentlayer } from "next-contentlayer";
+
 const jiti = createJiti(fileURLToPath(import.meta.url));
 
 jiti("./src/env");
@@ -56,4 +58,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withContentlayer(nextConfig);

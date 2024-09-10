@@ -1,6 +1,14 @@
-export default function Bg() {
+import { cn } from "@/lib/utils";
+
+export default function Bg({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className="fixed inset-0 -z-10 h-full w-full">
+    <div
+      className={cn("fixed inset-0 -z-10 h-full w-full", className)}
+      {...props}
+    >
       <div
         aria-hidden="true"
         className="absolute top-1/2 -z-10 -translate-y-1/2"
