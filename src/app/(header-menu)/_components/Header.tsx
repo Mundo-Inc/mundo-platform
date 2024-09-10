@@ -102,6 +102,12 @@ export default function Header() {
           <HeaderItem pathname={pathname} href="/contact">
             Contact Us
           </HeaderItem>
+          <HeaderItem pathname={pathname} href="/legal/tos">
+            Terms of Service
+          </HeaderItem>
+          <HeaderItem pathname={pathname} href="/legal/privacy-policy">
+            Privacy Policy
+          </HeaderItem>
           {user ? (
             <HeaderItem
               pathname={pathname}
